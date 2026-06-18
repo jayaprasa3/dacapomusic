@@ -43,10 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // EmailJS Form Submission
+    const EMAILJS_CONFIG = {
+        serviceId: 'service_qfnvv5l',
+        templateId: 'template_dngt8zd',
+        publicKey: 'Hw6h3J8XAj605NBMx'
+    };
+
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         // Initialize EmailJS with the public key
-        emailjs.init("Hw6h3J8XAj605NBMx");
+        emailjs.init(EMAILJS_CONFIG.publicKey);
 
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -63,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: document.getElementById('message').value
             };
 
-            emailjs.send('service_dhr798u', 'template_dngt8zd', templateParams)
+            emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams)
                 .then(function () {
                     submitBtn.innerText = 'Sent Successfully!';
                     submitBtn.style.background = '#10B981'; // Success green
